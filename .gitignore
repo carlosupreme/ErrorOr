@@ -1,8 +1,5 @@
-/vendor/
-
-/composer.lock
-
-.env
-
-/.idea/
-/.vscode/
+node_modules/
+build/
+.vscode/
+.idea/
+.DS_Store

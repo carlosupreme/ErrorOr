@@ -1,0 +1,24 @@
+{
+  "name": "error-or",
+  "repository": {
+    "url": "https://github.com/carlosupreme/ErrorOr/tree/typescript"
+  },
+  "version": "1.0.0",
+  "description": "A simple class to handle errors and results in a more elegant way.",
+  "main": "build/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run"
+  },
+  "keywords": [],
+  "author": "Carlos Sosa",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "typescript": "^5.5.3",
+    "vitest": "^1.6.0"
+  }
+}
