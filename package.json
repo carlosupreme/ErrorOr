@@ -3,7 +3,7 @@
   "repository": {
     "url": "git+https://github.com/carlosupreme/ErrorOr.git#typescript"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple class to handle errors and results in a more elegant way.",
   "main": "dist/index.js",
   "directories": {
