@@ -1,7 +1,7 @@
 import {ErrorOr} from './ErrorOr';
-import {CustomError} from './CustomError';
-import {ErrorType} from './ErrorType';
 
-export {CustomError, ErrorType};
+export * from './CustomError';
+export * from './ErrorType';
+
 export default ErrorOr;
 
