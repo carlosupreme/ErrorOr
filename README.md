@@ -9,7 +9,7 @@ errors and successful results in a unified way.
 You can install the library using Composer. Run the following command in your project's root directory:
 
 ```bash
-npm install carlosupreme/error-or
+npm install error-or
 ```
 
 ## Usage
