@@ -71,11 +71,10 @@ import ErrorOr, {CustomError} from 'error-or';
 const result = ErrorOr.success('some value');
 
 // From a single error
-const errorResult = ErrorOr.error(Error.failure());
+const errorResult = ErrorOr.failure(Error.failure());
 
 // From multiple errors
-const errors = [CustomError.failure(), CustomError.validation()];
-const multipleErrorsResult = ErrorOr.fromErrors(errors);
+const multipleErrorsResult = ErrorOr.failure(CustomError.failure(), CustomError.validation());
 ```
 
 #### Handling the Result
