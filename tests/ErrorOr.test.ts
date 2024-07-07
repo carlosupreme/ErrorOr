@@ -11,7 +11,7 @@ describe('ErrorOr', () => {
 
     it('fromError should have an error', () => {
         const error = CustomError.failure();
-        const result = ErrorOr.error(error);
+        const result = ErrorOr.failure(error);
         expect(result.isError()).toBe(true);
         expect(result.getErrors()).toEqual([error]);
     });
@@ -19,20 +19,20 @@ describe('ErrorOr', () => {
     it('fromErrors should have multiple errors', () => {
         const error1 = CustomError.failure();
         const error2 = CustomError.unexpected();
-        const result = ErrorOr.fromErrors(error1, error2);
+        const result = ErrorOr.failure(error1, error2);
         expect(result.isError()).toBe(true);
         expect(result.getErrors()).toEqual([error1, error2]);
     });
 
     it('getValue should throw an exception when there is an error', () => {
         const error = CustomError.failure();
-        const result = ErrorOr.error(error);
+        const result = ErrorOr.failure(error);
         expect(() => result.getValue()).toThrow('Value cannot be accessed when there are errors.');
     });
 
     it('getFirstError should return the first error', () => {
         const error = CustomError.failure();
-        const result = ErrorOr.error(error);
+        const result = ErrorOr.failure(error);
         expect(result.getErrors()?.[0]).toEqual(error);
     });
 });

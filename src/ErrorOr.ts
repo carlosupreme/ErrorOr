@@ -1,12 +1,15 @@
-import {CustomError} from "./CustomError";
+import { CustomError } from "./CustomError";
 
 export class ErrorOr<T> {
-    private constructor(
-        private value: T | null = null,
-        private errors: CustomError[] | null = null) {
+    private readonly value?: T;
+    private readonly errors?: CustomError[];
+
+    private constructor(value?: T, ...errors: CustomError[]) {
+        this.value = value;
+        this.errors = errors;
     }
 
-    public static success<T>(value: T): ErrorOr<T> {
+    static success<T>(value: T): ErrorOr<T> {
         if (value === null) {
             throw new Error('Value cannot be null.');
         }
@@ -14,19 +17,11 @@ export class ErrorOr<T> {
         return new ErrorOr<T>(value);
     }
 
-    public static error(error: CustomError): ErrorOr<null> {
-        return new ErrorOr<null>(null, [error]);
+    static failure<T>(...errors: CustomError[]): ErrorOr<T> {
+        return new ErrorOr<T>(undefined, ...errors);
     }
 
-    public static fromErrors(...errors: CustomError[]): ErrorOr<null> {
-        if (errors.length === 0) {
-            throw new Error('Provide at least one error.');
-        }
-
-        return new ErrorOr<null>(null, errors);
-    }
-
-    public getValue(): T {
+    getValue(): T {
         if (this.isError()) {
             throw new Error('Value cannot be accessed when there are errors.');
         }
@@ -34,23 +29,19 @@ export class ErrorOr<T> {
         return this.value!;
     }
 
-    public getErrors(): CustomError[] | null {
-        return this.errors;
+    isError(): boolean {
+        return this.errors !== undefined && this.errors.length > 0;
     }
 
-    public hasValue(): boolean {
-        return this.value !== null;
+    getErrors(): CustomError[] {
+        if (!this.isError()) {
+            return [];
+        }
+
+        return this.errors!;
     }
 
-    public isError(): boolean {
-        return this.errors !== null && this.errors.length > 0;
-    }
-
-    public isOk(): boolean {
-        return this.hasValue() && !this.isError();
-    }
-
-    public getFirstError(): CustomError | null {
+    getFirstError(): CustomError | null {
         if (!this.isError()) {
             return null;
         }
